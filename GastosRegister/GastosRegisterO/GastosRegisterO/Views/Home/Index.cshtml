@@ -1,0 +1,43 @@
+﻿@model GastosRegisterO.Models.HomeVM;
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<h1> Welcome now</h1>
+  <div class="row">
+      
+    @if(Model.gastos.Count() > 0) {
+        <div class="col-6 offset-3 p-4">
+            @foreach(var item in Model.gastos)
+            {
+                <div class="card bg-white"> 
+                    <div class="card-header">
+                        <h6 class="float-end">@item.FechaHora</h6>
+                    </div>
+                    <div class="card-body">
+                        <H3 class="text-center"><b>Asunto:</b></H3>
+                           <p class="text-center"> @item.Asunto</p>
+                    </div>
+                    <div class="card-footer">
+                         <h6 class="text-center"><b>Monto:</b> @((item.Costo).ToString("c")) </h6>
+                        <a class="btn btn-primary" asp-action="Edit" asp-controller="Home" asp-route-id="@item.Id">Editar</a>
+                       
+                         <a class="btn btn-Danger float-end" onclick="Delete(/home/Delete)" asp-route-id="@item.Id">Eliminar</a>
+                    </div>
+                </div>
+                <br />
+
+                
+
+            }
+        </div>
+    }
+      <div>
+      <p><strong>Total Gastado:</strong>@((ViewBag.total).ToString("c"))</p> 
+    </div>
+      </div>
+
+
+
+
+

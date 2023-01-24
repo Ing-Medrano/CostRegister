@@ -1,0 +1,54 @@
+﻿@model IEnumerable<GastosRegisterO.Models.Gastos>;
+@{
+    ViewData["Title"] = "AllGastos";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1 class="text-black">Gastos</h1>
+<section>
+    <div class="bg-white p-4">
+    <div>
+        <a class="btn btn-primary float-end mb-2" asp-action="InsertGasto" asp-controller="home"> <i class="fa-solid fa-plus-minus"></i>Insert new gasto</a>
+    </div>
+    <div>
+        @if (Model.Count() > 0)
+        {
+            <table id="gastostable" class="table table-bordered table-striped-columns" >
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Asunto</th>
+                        <th>FechaHora</th>
+                        <th>Imagen</th>
+                         <th>Costo</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                @foreach (var item in Model)
+                {
+                    <tbody>
+                        <tr>
+                            <td>@item.Id</td>
+                            <td>@item.Asunto</td>
+                            <td>@item.FechaHora</td>
+                            <td>@item.Imagen</td>
+                        </tr>
+
+                    </tbody>
+                }
+            </table>
+        }
+        else
+        {
+            <p>Nothing to show you</p>
+        }
+
+    </div>
+    </div>
+
+</section>
+
+@section Scripts{
+    <script src="/js/gastos.js"></script>
+}
+
